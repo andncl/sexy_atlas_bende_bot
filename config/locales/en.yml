@@ -43,6 +43,7 @@ en:
         /memo %text% - Saves text to session.
         /remind_me - Replies with text from session.
         /keyboard - Simple keyboard.
+        /test_things - 
         /inline_keyboard - Inline keyboard example.
         Bot supports inline queries. Enable it in @BotFather.
         /last_chosen_inline_result - Your last chosen inline result \
@@ -74,3 +75,5 @@ en:
       nothing: Nothing to remind
     start:
       content: Hi there!
+    test_things:
+      content: Dont mind, im just testing things.

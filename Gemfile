@@ -53,7 +53,7 @@ gem "telegram-bot", "~> 0.15.5"
 group :pry do
   gem "awesome_print"
   gem "pry"
-  gem "pry-byebug"
+  gem "pry-byebug", "~> 3.9.0"
   gem "pry-doc"
   gem "pry-rails"
 end

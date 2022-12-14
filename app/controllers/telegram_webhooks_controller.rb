@@ -2,7 +2,8 @@ class TelegramWebhooksController < Telegram::Bot::UpdatesController
   include Telegram::Bot::UpdatesController::MessageContext
 
   def start!(*)
-    respond_with :message, text: t('.content')
+    response = from ? "Hello #{from['username']}!" : 'Hi there!'
+    respond_with :message, text: response
   end
 
   def help!(*)
@@ -17,6 +18,10 @@ class TelegramWebhooksController < Telegram::Bot::UpdatesController
       respond_with :message, text: t('.prompt')
       save_context :memo!
     end
+  end
+
+  def test_things!(*)
+    respond_with :message, text:  t('.content')
   end
 
   def remind_me!(*)
