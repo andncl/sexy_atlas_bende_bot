@@ -1,5 +1,6 @@
 class TelegramWebhooksController < Telegram::Bot::UpdatesController
   include Telegram::Bot::UpdatesController::MessageContext
+  include ApplicationHelper
 
   def start!(*)
     response = from ? "Hello #{from['username']}!" : 'Hi there!'
@@ -98,6 +99,7 @@ class TelegramWebhooksController < Telegram::Bot::UpdatesController
   end
 
   def message(message)
+    message_processor(message)
     respond_with :message, text: t('.content', text: message['text'])
   end
 
