@@ -10,7 +10,25 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_12_14_153720) do
+ActiveRecord::Schema[7.0].define(version: 2022_12_14_161434) do
+  create_table "cooks", force: :cascade do |t|
+    t.string "first_name"
+    t.integer "meal_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["meal_id"], name: "index_cooks_on_meal_id"
+  end
+
+  create_table "eaters", force: :cascade do |t|
+    t.string "first_name"
+    t.integer "member_id", null: false
+    t.integer "meal_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["meal_id"], name: "index_eaters_on_meal_id"
+    t.index ["member_id"], name: "index_eaters_on_member_id"
+  end
+
   create_table "meals", force: :cascade do |t|
     t.string "name"
     t.integer "opening_time"
@@ -29,4 +47,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_14_153720) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "cooks", "meals"
+  add_foreign_key "eaters", "meals"
+  add_foreign_key "eaters", "members"
 end
