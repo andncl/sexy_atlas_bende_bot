@@ -16,4 +16,19 @@ module ApplicationHelper
 	      )
 	  end
 	end
+
+	def wants_to_cook
+	end
+
+	def wants_to_eat
+	end
+
+	def wants_to_quit
+	end
+
+	def wants_to_close
+	end
+
+	def wants_to_price
+	end
 end
