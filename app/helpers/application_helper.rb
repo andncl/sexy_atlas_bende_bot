@@ -4,16 +4,15 @@ module ApplicationHelper
 	end
 
 	def check_user()
-	  if Member.find_by_id(from['id'].to_s).exists?
+	  if Member.exists?(id: from['id'] )
 	    user = Member.find_by(telegram_id: from['id'])
 	  else
 	    user = Member.create(
-	    	id: from['id']
+	    	id: from['id'],
 	      first_name: from['first_name'],
-	      last_name: from['first_name'],
+	      last_name: from['last_name'],
 	      phone_number: 1234567,
 	      balance: 0.0,
-	      telegram_id: from['id']
 	      )
 	  end
 	end
