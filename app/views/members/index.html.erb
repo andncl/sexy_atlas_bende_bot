@@ -7,10 +7,9 @@
 <table class="table table-striped">
   <thead>
     <tr>
-      <th scope="col">#</th>
+      <th scope="col">Telegram ID</th>
       <th scope="col">First name</th>
       <th scope="col">Last name</th>
-      <th scope="col">Phone</th>
       <th scope="col">Balance</th>
     </tr>
   </thead>
@@ -20,7 +19,6 @@
         <th scope="row"><%= member.id%></th>
         <td><%= member.first_name %></td>
         <td><%= member.last_name %></td>
-        <td><%= member.phone_number %></td>
         <td><%= member.balance %></td>
         <td>
           <%= link_to 'Show', 
@@ -33,10 +31,7 @@
           class:"btn btn-secondary" %>
         </td>
         <td>
-          <%= link_to "Destroy this member",
-          member,
-          method: :delete,
-          class:"btn btn-danger" %>
+          <%= button_to "Destroy this member", @member, method: :delete %>
          </td>
       </tr>
     <% end %>
