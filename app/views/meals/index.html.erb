@@ -11,4 +11,53 @@
   <% end %>
 </div>
 
+
+<h1>Meal list</h1>
+
+<%= link_to "New meal", new_meal_path %>
+<br/><br/>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Name</th>
+      <th scope="col">Cook</th>
+      <th scope="col">Opening time</th>
+      <th scope="col">Closing time</th>
+      <th scope="col">Price</th>
+      <th scope="col">Show</th>
+      <th scope="col">Edit</th>
+      <th scope="col">Delete</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @meals.each do |meal| %>
+      <tr>
+        <th scope="row"><%= meal.id%></th>
+        <td><%= meal.name %></td>
+        <td><%= meal.cook %></td>
+        <td><%= meal.opening_time %></td>
+        <td><%= meal.closing_time %></td>
+        <td><%= meal.opening_time %></td>
+        <td>
+          <%= link_to 'Show', 
+            meal,
+            class:"btn btn-primary" %>
+        </td>
+        <td>
+          <%= link_to 'Edit', 
+          edit_meal_path(meal),
+          class:"btn btn-secondary" %>
+        </td>
+        <td>
+          <%= link_to "Destroy this member",
+          member,
+          method: :delete,
+          class:"btn btn-danger" %>
+         </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
 <%= link_to "New meal", new_meal_path %>
