@@ -70,7 +70,7 @@ en:
       notice: Remembered!
       prompt: What should I remember?
     message:
-      content: 'You wrote: %{text}'
+      content: '%{name} wrote: %{text}'
     remind_me:
       nothing: Nothing to remind
     start:

@@ -3,7 +3,7 @@ class TelegramWebhooksController < Telegram::Bot::UpdatesController
   include ApplicationHelper
 
   def start!(*)
-    response = from ? "Hello #{from['username']}!" : 'Hi there!'
+    response = from ? "Hello #{from['last_name']}!" : 'Hi there!'
     respond_with :message, text: response
   end
 
@@ -99,8 +99,9 @@ class TelegramWebhooksController < Telegram::Bot::UpdatesController
   end
 
   def message(message)
+    check_user()
     message_processor(message)
-    respond_with :message, text: t('.content', text: message['text'])
+    respond_with :message, text: t('.content', name: from['first_name'],text: message['text'])
   end
 
   def action_missing(action, *_args)
