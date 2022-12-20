@@ -1,17 +1,5 @@
 <p style="color: green"><%= notice %></p>
 
-<h1>Meals</h1>
-
-<div id="meals">
-  <% @meals.each do |meal| %>
-    <%= render meal %>
-    <p>
-      <%= link_to "Show this meal", meal %>
-    </p>
-  <% end %>
-</div>
-
-
 <h1>Meal list</h1>
 
 <%= link_to "New meal", new_meal_path %>
@@ -22,8 +10,6 @@
       <th scope="col">#</th>
       <th scope="col">Name</th>
       <th scope="col">Cook</th>
-      <th scope="col">Opening time</th>
-      <th scope="col">Closing time</th>
       <th scope="col">Price</th>
       <th scope="col">Show</th>
       <th scope="col">Edit</th>
@@ -35,10 +21,7 @@
       <tr>
         <th scope="row"><%= meal.id%></th>
         <td><%= meal.name %></td>
-        <td><%= meal.cook %></td>
-        <td><%= meal.opening_time %></td>
-        <td><%= meal.closing_time %></td>
-        <td><%= meal.opening_time %></td>
+        <td>placeholder</td>
         <td>
           <%= link_to 'Show', 
             meal,
@@ -50,8 +33,8 @@
           class:"btn btn-secondary" %>
         </td>
         <td>
-          <%= link_to "Destroy this member",
-          member,
+          <%= link_to "Destroy this meal",
+          meal,
           method: :delete,
           class:"btn btn-danger" %>
          </td>
@@ -60,4 +43,3 @@
   </tbody>
 </table>
 
-<%= link_to "New meal", new_meal_path %>
