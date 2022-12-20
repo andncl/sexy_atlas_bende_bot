@@ -1,45 +1,44 @@
 <p style="color: green"><%= notice %></p>
 
-<h1>Members</h1>
-
-<div id="members">
-  <% @members.each do |member| %>
-    <%= render member %>
-    <p>
-      <%= link_to "Show this member", member %>
-    </p>
-  <% end %>
-</div>
+<h1>Members list</h1>
 
 <%= link_to "New member", new_member_path %>
-
-
-<table class="table">
+<br/><br/>
+<table class="table table-striped">
   <thead>
     <tr>
       <th scope="col">#</th>
-      <th scope="col">First</th>
-      <th scope="col">Last</th>
-      <th scope="col">Handle</th>
+      <th scope="col">First name</th>
+      <th scope="col">Last name</th>
+      <th scope="col">Phone</th>
+      <th scope="col">Balance</th>
     </tr>
   </thead>
   <tbody>
-    <tr>
-      <th scope="row">1</th>
-      <td>Mark</td>
-      <td>Otto</td>
-      <td>@mdo</td>
-    </tr>
-    <tr>
-      <th scope="row">2</th>
-      <td>Jacob</td>
-      <td>Thornton</td>
-      <td>@fat</td>
-    </tr>
-    <tr>
-      <th scope="row">3</th>
-      <td colspan="2">Larry the Bird</td>
-      <td>@twitter</td>
-    </tr>
+    <% @members.each do |member| %>
+      <tr>
+        <th scope="row"><%= member.id%></th>
+        <td><%= member.first_name %></td>
+        <td><%= member.last_name %></td>
+        <td><%= member.phone_number %></td>
+        <td><%= member.balance %></td>
+        <td>
+          <%= link_to 'Show', 
+            member,
+            class:"btn btn-primary" %>
+        </td>
+        <td>
+          <%= link_to 'Edit', 
+          edit_member_path(member),
+          class:"btn btn-secondary" %>
+        </td>
+        <td>
+          <%= link_to "Destroy this member",
+          member,
+          method: :delete,
+          class:"btn btn-danger" %>
+         </td>
+      </tr>
+    <% end %>
   </tbody>
 </table>
