@@ -11,7 +11,6 @@ module ApplicationHelper
 	    	id: from['id'],
 	      first_name: from['first_name'],
 	      last_name: from['last_name'],
-	      phone_number: 1234567,
 	      balance: 0.0,
 	      )
 	  end
