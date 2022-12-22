@@ -80,7 +80,7 @@ group :test do
   # gem "capybara"
   # gem "selenium-webdriver"
   # gem "webdrivers"
-  gem 'minitest-rails-capybara'
+  gem "minitest-rails", "~> 7.0.0"
   gem "rspec-rails"
   gem "rspec-its"
 end
