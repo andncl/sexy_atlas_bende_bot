@@ -1,0 +1,3 @@
+ApplicationHelperTest < ActionDispatch::IntegrationTest
+
+end
