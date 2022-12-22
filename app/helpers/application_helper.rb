@@ -4,10 +4,12 @@ module ApplicationHelper
 	end
 
 	def check_user()
-	  if Member.exists?(id: from['id'] )
-	    user = Member.find_by(telegram_id: from['id'])
+	  if User.exists?(id: from['id'] )
+	    Current.user = 	User.find(from['id'])
+	    puts "HALLLOOOOOOOOOOOOOO"
+	    puts Current.user.inspect
 	  else
-	    user = Member.create(
+	    Current.user = User.create(
 	    	id: from['id'],
 	      first_name: from['first_name'],
 	      last_name: from['last_name'],
@@ -16,7 +18,16 @@ module ApplicationHelper
 	  end
 	end
 
-	def wants_to_cook
+	def wants_to_cook(*args)
+		check_user()
+		puts "HALLLOOOOOOOOOOOOOO"
+		puts Current.user.inspect
+
+		cook = Cook.new()
+		meal = Meal.create(
+				name: args.join(' '), 
+				cook_id: Current.user.id
+			)
 	end
 
 	def wants_to_eat

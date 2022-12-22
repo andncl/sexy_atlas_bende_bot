@@ -1,4 +1,5 @@
 class Meal < ApplicationRecord
+	has_one :cook
 	has_many :eaters
 
 	  def init

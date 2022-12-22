@@ -2,10 +2,10 @@
 
 one:
   first_name: MyString
-  member: one
+  user: one
   meal: one
 
 two:
   first_name: MyString
-  member: two
+  user: two
   meal: two

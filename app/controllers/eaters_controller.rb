@@ -53,6 +53,6 @@ class EatersController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def eater_params
-      params.require(:eater).permit(:first_name, :member_id, :meal_id)
+      params.require(:eater).permit(:first_name, :user_id, :meal_id)
     end
 end

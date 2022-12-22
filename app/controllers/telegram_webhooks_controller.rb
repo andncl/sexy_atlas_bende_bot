@@ -98,6 +98,10 @@ class TelegramWebhooksController < Telegram::Bot::UpdatesController
     end
   end
 
+  def k!(*args)
+    wants_to_cook(*args)
+  end
+
   def message(message)
     check_user()
     message_processor(message)
@@ -107,7 +111,10 @@ class TelegramWebhooksController < Telegram::Bot::UpdatesController
   def action_missing(action, *_args)
     if action_type == :command
       respond_with :message,
-        text: t('telegram_webhooks.action_missing.command', command: action_options[:command])
+        text: t(
+          'telegram_webhooks.action_missing.command',
+         command: action_options[:command]
+         )
     end
   end
 end

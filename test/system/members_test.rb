@@ -1,47 +1,47 @@
 require "application_system_test_case"
 
-class MembersTest < ApplicationSystemTestCase
+class usersTest < ApplicationSystemTestCase
   setup do
-    @member = members(:one)
+    @user = users(:one)
   end
 
   test "visiting the index" do
-    visit members_url
-    assert_selector "h1", text: "Members"
+    visit users_url
+    assert_selector "h1", text: "users"
   end
 
-  test "should create member" do
-    visit members_url
-    click_on "New member"
+  test "should create user" do
+    visit users_url
+    click_on "New user"
 
-    fill_in "Balance", with: @member.balance
-    fill_in "First name", with: @member.first_name
-    fill_in "Last name", with: @member.last_name
-    fill_in "Phone number", with: @member.phone_number
-    click_on "Create Member"
+    fill_in "Balance", with: @user.balance
+    fill_in "First name", with: @user.first_name
+    fill_in "Last name", with: @user.last_name
+    fill_in "Phone number", with: @user.phone_number
+    click_on "Create user"
 
-    assert_text "Member was successfully created"
+    assert_text "user was successfully created"
     click_on "Back"
   end
 
-  test "should update Member" do
-    visit member_url(@member)
-    click_on "Edit this member", match: :first
+  test "should update user" do
+    visit user_url(@user)
+    click_on "Edit this user", match: :first
 
-    fill_in "Balance", with: @member.balance
-    fill_in "First name", with: @member.first_name
-    fill_in "Last name", with: @member.last_name
-    fill_in "Phone number", with: @member.phone_number
-    click_on "Update Member"
+    fill_in "Balance", with: @user.balance
+    fill_in "First name", with: @user.first_name
+    fill_in "Last name", with: @user.last_name
+    fill_in "Phone number", with: @user.phone_number
+    click_on "Update user"
 
-    assert_text "Member was successfully updated"
+    assert_text "user was successfully updated"
     click_on "Back"
   end
 
-  test "should destroy Member" do
-    visit member_url(@member)
-    click_on "Destroy this member", match: :first
+  test "should destroy user" do
+    visit user_url(@user)
+    click_on "Destroy this user", match: :first
 
-    assert_text "Member was successfully destroyed"
+    assert_text "user was successfully destroyed"
   end
 end

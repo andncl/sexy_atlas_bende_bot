@@ -16,7 +16,7 @@ class EatersTest < ApplicationSystemTestCase
 
     fill_in "First name", with: @eater.first_name
     fill_in "Meal", with: @eater.meal_id
-    fill_in "Member", with: @eater.member_id
+    fill_in "user", with: @eater.user_id
     click_on "Create Eater"
 
     assert_text "Eater was successfully created"
@@ -29,7 +29,7 @@ class EatersTest < ApplicationSystemTestCase
 
     fill_in "First name", with: @eater.first_name
     fill_in "Meal", with: @eater.meal_id
-    fill_in "Member", with: @eater.member_id
+    fill_in "user", with: @eater.user_id
     click_on "Update Eater"
 
     assert_text "Eater was successfully updated"

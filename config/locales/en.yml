@@ -56,6 +56,8 @@ en:
     inline_query:
       content: Content
       description: Description
+    k:
+      will_cook: '%{name} is going to cook!'
     keyboard:
       buttons:
         - Lorem

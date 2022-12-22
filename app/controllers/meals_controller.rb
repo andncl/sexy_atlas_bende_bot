@@ -53,6 +53,11 @@ class MealsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def meal_params
-      params.require(:meal).permit(:name, :opening_time, :closing_time, :price)
+      params.require(:meal).permit(
+        :name, 
+        :opening_time, 
+        :closing_time, 
+        :price
+      )
     end
 end

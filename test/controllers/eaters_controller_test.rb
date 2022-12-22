@@ -17,7 +17,7 @@ class EatersControllerTest < ActionDispatch::IntegrationTest
 
   test "should create eater" do
     assert_difference("Eater.count") do
-      post eaters_url, params: { eater: { first_name: @eater.first_name, meal_id: @eater.meal_id, member_id: @eater.member_id } }
+      post eaters_url, params: { eater: { first_name: @eater.first_name, meal_id: @eater.meal_id, user_id: @eater.user_id } }
     end
 
     assert_redirected_to eater_url(Eater.last)
@@ -34,7 +34,7 @@ class EatersControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update eater" do
-    patch eater_url(@eater), params: { eater: { first_name: @eater.first_name, meal_id: @eater.meal_id, member_id: @eater.member_id } }
+    patch eater_url(@eater), params: { eater: { first_name: @eater.first_name, meal_id: @eater.meal_id, user_id: @eater.user_id } }
     assert_redirected_to eater_url(@eater)
   end
 

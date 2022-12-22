@@ -1,48 +1,48 @@
 require "test_helper"
 
-class MembersControllerTest < ActionDispatch::IntegrationTest
+class usersControllerTest < ActionDispatch::IntegrationTest
   setup do
-    @member = members(:one)
+    @user = users(:one)
   end
 
   test "should get index" do
-    get members_url
+    get users_url
     assert_response :success
   end
 
   test "should get new" do
-    get new_member_url
+    get new_user_url
     assert_response :success
   end
 
-  test "should create member" do
-    assert_difference("Member.count") do
-      post members_url, params: { member: { balance: @member.balance, first_name: @member.first_name, last_name: @member.last_name, phone_number: @member.phone_number } }
+  test "should create user" do
+    assert_difference("user.count") do
+      post users_url, params: { user: { balance: @user.balance, first_name: @user.first_name, last_name: @user.last_name, phone_number: @user.phone_number } }
     end
 
-    assert_redirected_to member_url(Member.last)
+    assert_redirected_to user_url(user.last)
   end
 
-  test "should show member" do
-    get member_url(@member)
+  test "should show user" do
+    get user_url(@user)
     assert_response :success
   end
 
   test "should get edit" do
-    get edit_member_url(@member)
+    get edit_user_url(@user)
     assert_response :success
   end
 
-  test "should update member" do
-    patch member_url(@member), params: { member: { balance: @member.balance, first_name: @member.first_name, last_name: @member.last_name, phone_number: @member.phone_number } }
-    assert_redirected_to member_url(@member)
+  test "should update user" do
+    patch user_url(@user), params: { user: { balance: @user.balance, first_name: @user.first_name, last_name: @user.last_name, phone_number: @user.phone_number } }
+    assert_redirected_to user_url(@user)
   end
 
-  test "should destroy member" do
-    assert_difference("Member.count", -1) do
-      delete member_url(@member)
+  test "should destroy user" do
+    assert_difference("user.count", -1) do
+      delete user_url(@user)
     end
 
-    assert_redirected_to members_url
+    assert_redirected_to users_url
   end
 end
