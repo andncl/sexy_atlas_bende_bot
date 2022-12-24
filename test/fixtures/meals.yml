@@ -2,12 +2,8 @@
 
 one:
   name: MyString
-  opening_time: 1
-  closing_time: 1
   price: 1.5
 
 two:
   name: MyString
-  opening_time: 1
-  closing_time: 1
   price: 1.5

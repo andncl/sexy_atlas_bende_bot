@@ -3,11 +3,9 @@
 one:
   first_name: MyString
   last_name: MyString
-  phone_number: 1
   balance: 1.5
 
 two:
   first_name: MyString
   last_name: MyString
-  phone_number: 1
   balance: 1.5

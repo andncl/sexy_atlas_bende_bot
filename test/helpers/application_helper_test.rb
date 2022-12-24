@@ -1,8 +1,11 @@
-require 'test_helper'
+require "test_helper"
 
-ApplicationHelperTest < ActionDispatch::IntegrationTest
+class ApplicationHelperTest < ActiveSupport::TestCase
+	def setup
+		Current.user = build(:user, :called_hans)
+	end
 
 	test "the_truth" do 
-		assert true
+		assert_equal Current.user.first_name, "Hans"
 	end
 end

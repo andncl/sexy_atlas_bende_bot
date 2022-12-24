@@ -79,6 +79,11 @@ GEM
       reline (>= 0.3.1)
     diff-lcs (1.5.0)
     erubi (1.11.0)
+    factory_bot (6.2.1)
+      activesupport (>= 5.0.0)
+    factory_bot_rails (6.2.0)
+      factory_bot (~> 6.2.0)
+      railties (>= 5.0.0)
     globalid (1.0.0)
       activesupport (>= 5.0)
     httpclient (2.8.3)
@@ -232,6 +237,7 @@ PLATFORMS
 DEPENDENCIES
   awesome_print
   debug
+  factory_bot_rails
   importmap-rails
   minitest-rails (~> 7.0.0)
   pry
