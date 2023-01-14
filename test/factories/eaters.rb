@@ -6,13 +6,14 @@ FactoryBot.define do
 
     trait :called_hans do
       first_name { "Hans" }
+    end
 
-    trait :is_cook
-      cook { true }
+    trait :is_cook do
+      cooking { true }
+    end
 
-    trait :is_eater
+    trait :is_eater do
       cook { false }
-
     end
   end
 end

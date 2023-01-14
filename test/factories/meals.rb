@@ -3,9 +3,8 @@ FactoryBot.define do
     name { "Hack" }
     price { 3.4 } 
 
-    trait :with_cook
-      eater, meal_id: meal.id 
-
+    trait :with_cook do
+      association eater
     end
   end
 end
