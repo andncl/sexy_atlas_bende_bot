@@ -20,7 +20,6 @@ module ApplicationHelper
 
 	def wants_to_cook(*args)
 		check_user()
-		puts "HALLLOOOOOOOOOOOOOO"
 		puts Current.user.inspect
 
 		cook = Cook.new()
@@ -30,15 +29,19 @@ module ApplicationHelper
 			)
 	end
 
-	def wants_to_eat
+	def wants_to_eat(meal)
+		check_user()
 	end
 
-	def wants_to_quit
+	def wants_to_quit(meal)
+		check_user()
 	end
 
-	def wants_to_close
+	def wants_to_close(meal)
+		check_user()
 	end
 
-	def wants_to_price
+	def wants_to_price(meal)
+		check_user()
 	end
 end
