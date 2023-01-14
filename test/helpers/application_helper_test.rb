@@ -6,9 +6,9 @@ class ApplicationHelperTest < ActiveSupport::TestCase
 		@meal = create(:meal)
 		@eater = create(
 			:eater,
+			:is_cook,
 			meal: @meal, 
 			user: Current.user,
-			cooking: true 
 		)
 
 	end
