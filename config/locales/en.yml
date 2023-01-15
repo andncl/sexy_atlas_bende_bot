@@ -30,15 +30,27 @@
 # available at https://guides.rubyonrails.org/i18n.html.
 
 en:
+  models:
+    meal:
+      header: '**%{first_name} is cooking\!**'
+      not_yet_joined: You cant leave if you have not joined the meald
   telegram_webhooks:
     action_missing:
       command: Can not perform %{command}
     callback_query:
       alert: This is ALERT-T-T!!!
+      meal:
+        already_eater: You are already participating
+        joining_meal: You are joining the meal
+      eat: E
+      kook: K
+      pay: P
+      leave: X
       no_alert: Simple answer
       joining_meal: You are joining the meal
       paying: You are adding an expense
       leaving: You exited the meal
+      overview: See overview
     help:
       content: |
         Available cmds:
