@@ -1,5 +1,6 @@
 class TelegramWebhooksController < Telegram::Bot::UpdatesController
   include Telegram::Bot::UpdatesController::MessageContext
+  include Telegram::Bot::UpdatesController::ReplyHelpers
   include ApplicationHelper
 
   def start!(*)
@@ -112,7 +113,7 @@ class TelegramWebhooksController < Telegram::Bot::UpdatesController
 
   def k!(*args)
     meal = wants_to_cook(*args)
-    respond_with :message, text: t('.prompt', first_name: Current.user.first_name), reply_markup: {
+    respond_with :message, text: meal.generate_meal_overview, parse_mode: 'MarkdownV2', reply_markup: {
       inline_keyboard: [
         [
           {text: t('.eat'), callback_data: 'wants_to_eat'},
