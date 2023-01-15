@@ -4,9 +4,9 @@ module ApplicationHelper
 	end
 
 	def check_user()
+		puts "CHECKING THE USER"
 	  if User.exists?(id: from['id'] )
 	    Current.user = 	User.find(from['id'])
-	    puts "HALLLOOOOOOOOOOOOOO"
 	    puts Current.user.inspect
 	  else
 	    Current.user = User.create(
@@ -22,7 +22,7 @@ module ApplicationHelper
 		check_user()
 		puts Current.user.inspect
 
-		cook = Cook.new()
+		#cook = Cook.new()
 		meal = Meal.create(
 				name: args.join(' '), 
 				cook_id: Current.user.id
@@ -31,17 +31,22 @@ module ApplicationHelper
 
 	def wants_to_eat(meal)
 		check_user()
+		eater = Eater.new()
+		puts 'WANTS TO EAT!'
 	end
 
 	def wants_to_quit(meal)
 		check_user()
+		puts 'WANTS TO QUIT!'
 	end
 
 	def wants_to_close(meal)
 		check_user()
+		puts 'WANTS TO CLOSE!'
 	end
 
 	def wants_to_price(meal)
 		check_user()
+		puts 'WANTS TO PRICE!'
 	end
 end
