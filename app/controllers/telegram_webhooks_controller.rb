@@ -58,16 +58,19 @@ class TelegramWebhooksController < Telegram::Bot::UpdatesController
   end
 
   def callback_query(data)
-    meal = Meal.find(1)
+    message_id = update.dig('callback_query','message', 'message_id')
+    meal = Meal.find_by(message_id: message_id)
+    puts meal
+
     case data
     when 'wants_to_eat'
       wants_to_eat(meal)
       answer_callback_query t('.joining_meal')
     when 'wants_to_pay'
-      wants_to_eat(meal)
+      wants_to_pay(meal)
       answer_callback_query t('.paying')
-    when 'wants_to_leave'
-      wants_to_eat(meal)
+    when 'wants_to_quit'
+      wants_to_quit(meal)
       answer_callback_query t('.leaving')
     else
       answer_callback_query t('.no_alert')
@@ -108,17 +111,18 @@ class TelegramWebhooksController < Telegram::Bot::UpdatesController
   end
 
   def k!(*args)
-    wants_to_cook(*args)
+    meal = wants_to_cook(*args)
     respond_with :message, text: t('.prompt', first_name: Current.user.first_name), reply_markup: {
       inline_keyboard: [
         [
           {text: t('.eat'), callback_data: 'wants_to_eat'},
-          {text: t('.leave'), callback_data: 'wants_to_leave'},
+          {text: t('.leave'), callback_data: 'wants_to_quit'},
           {text: t('.pay'), callback_data: 'wants_to_pay'}
         ],
         [{text: t('.overview'), url: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ'}],
       ],
     }
+    meal.update(message_id: update.dig('message', 'message_id') + 1)
   end
 
   def message(message)

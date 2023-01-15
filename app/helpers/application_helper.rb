@@ -22,22 +22,43 @@ module ApplicationHelper
 		check_user()
 		puts Current.user.inspect
 
-		#cook = Cook.new()
-		meal = Meal.create(
-				name: args.join(' '), 
-				cook_id: Current.user.id
+		meal = Meal.create(name: args.join(' '), cook_id: Current.user.id)
+		eater = Eater.create(
+			first_name: Current.user.first_name,
+			user_id: Current.user.id,
+			meal_id: meal[:id],
+			cooking: true,
+			eating: true
 			)
 	end
 
 	def wants_to_eat(meal)
 		check_user()
-		eater = Eater.new()
+		puts meal.inspect
+
+		eater = Eater.create(
+			first_name: Current.user.first_name,
+			user_id: Current.user.id,
+			meal_id: meal[:id],
+			cooking: false,
+			eating: true
+			)
+		puts eater.inspect 
 		puts 'WANTS TO EAT!'
 	end
 
 	def wants_to_quit(meal)
 		check_user()
 		puts 'WANTS TO QUIT!'
+		eater = Eater.find_by(meal_id: meal[:id])
+		eater.update(eating: false)
+		puts eater.inspect
+
+	end
+
+	def wants_to_pay(meal)
+		check_user()
+		puts 'WANTS TO CLOSE!'
 	end
 
 	def wants_to_close(meal)
