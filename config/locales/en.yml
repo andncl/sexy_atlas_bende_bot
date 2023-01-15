@@ -36,6 +36,9 @@ en:
     callback_query:
       alert: This is ALERT-T-T!!!
       no_alert: Simple answer
+      joining_meal: You are joining the meal
+      paying: You are adding an expense
+      leaving: You exited the meal
     help:
       content: |
         Available cmds:
@@ -58,6 +61,12 @@ en:
       description: Description
     k:
       will_cook: '%{name} is going to cook!'
+      prompt: '%{first_name} is cooking!'
+      overview: See overview
+      eat: E
+      kook: K
+      pay: P
+      leave: X
     keyboard:
       buttons:
         - Lorem
