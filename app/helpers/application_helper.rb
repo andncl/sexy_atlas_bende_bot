@@ -37,7 +37,8 @@ module ApplicationHelper
 	def wants_to_eat(meal)
 		check_user()
 		puts meal.inspect
-		if Current.user.is_eater(meal)
+		#byebug
+		if Current.user.is_eater(meal) && Eater.find_by(meal_id: meal[:id], user_id: Current.user[:id]).eating
 			answer_callback_query t('.meal.already_eater')
 		else 
 			eater = Eater.create(
@@ -46,9 +47,22 @@ module ApplicationHelper
 				meal_id: meal[:id],
 				cooking: false,
 				eating: true
-				)
-			puts eater.inspect 
-			puts 'WANTS TO EAT!'
+			)
+			edit_message(:text, 
+				text: meal.generate_meal_overview,  
+				message_id: meal[:message_id],
+				parse_mode: 'MarkdownV2',
+			 	reply_markup: {
+		      inline_keyboard: [
+		        [
+		          {text: t('.eat'), callback_data: 'wants_to_eat'},
+		          {text: t('.leave'), callback_data: 'wants_to_quit'},
+		          {text: t('.pay'), callback_data: 'wants_to_pay'}
+		        ],
+		        [{text: t('.overview'), url: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ'}],
+		      ],
+		    }
+		   )
 
 			#edit_message_text(message_id: meal.message_id, text: meal.generate_meal_overview)
 		end
