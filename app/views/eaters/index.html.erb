@@ -1,14 +1,46 @@
 <p style="color: green"><%= notice %></p>
 
-<h1>Eaters</h1>
-
-<div id="eaters">
-  <% @eaters.each do |eater| %>
-    <%= render eater %>
-    <p>
-      <%= link_to "Show this eater", eater %>
-    </p>
-  <% end %>
-</div>
+<h1>Eater List</h1>
 
 <%= link_to "New eater", new_eater_path %>
+<br/><br/>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">First Name</th>
+      <th scope="col">Cooking</th>
+      <th scope="col">Eating</th>
+      <th scope="col">Meal ID</th>
+      <th scope="col">Show</th>
+      <th scope="col">Edit</th>
+      <th scope="col">Delete</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @eaters.each do |eater| %>
+      <tr>
+        <th scope="row"><%= eater.id%></th>
+        <td><%= eater.first_name %></td>
+        <td>eater.cooking</td>
+        <td><%= eater.eating %></td>
+        <td><%= eater.meal_id %></td>
+        <td>
+          <%= link_to 'Show', 
+            eater,
+            class:"btn btn-primary" %>
+        </td>
+        <td>
+          <%= link_to 'Edit', 
+          edit_eater_path(eater),
+          class:"btn btn-secondary" %>
+        </td>
+        <td>
+          <%= button_to "Destroy this eater",
+          @eater,
+          method: :delete %>
+         </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
