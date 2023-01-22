@@ -1,6 +1,6 @@
 module ApplicationHelper
 	include Telegram::Bot::UpdatesController::ReplyHelpers
-
+	include MessageHelper
 	def message_processor(full_message)
 		puts full_message.to_s
 	end
@@ -37,9 +37,14 @@ module ApplicationHelper
 	def wants_to_eat(meal)
 		check_user()
 		puts meal.inspect
-		#byebug
-		if Current.user.is_eater(meal) && Eater.find_by(meal_id: meal[:id], user_id: Current.user[:id]).eating
-			answer_callback_query t('.meal.already_eater')
+		if Current.user.is_eater(meal)
+			if Current.user.is_eating(meal)
+				answer_callback_query t('.meal.already_eater')
+			else
+				Eater.find_by(user: Current.user, meal: meal).update(eating: true)
+				answer_callback_query t('.meal.joining_meal')
+				update_meal_summary(meal)
+			end
 		else 
 			eater = Eater.create(
 				first_name: Current.user.first_name,
@@ -48,23 +53,7 @@ module ApplicationHelper
 				cooking: false,
 				eating: true
 			)
-			edit_message(:text, 
-				text: meal.generate_meal_overview,  
-				message_id: meal[:message_id],
-				parse_mode: 'MarkdownV2',
-			 	reply_markup: {
-		      inline_keyboard: [
-		        [
-		          {text: t('.eat'), callback_data: 'wants_to_eat'},
-		          {text: t('.leave'), callback_data: 'wants_to_quit'},
-		          {text: t('.pay'), callback_data: 'wants_to_pay'}
-		        ],
-		        [{text: t('.overview'), url: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ'}],
-		      ],
-		    }
-		   )
-
-			#edit_message_text(message_id: meal.message_id, text: meal.generate_meal_overview)
+			update_meal_summary(meal)
 		end
 
 	end
@@ -72,23 +61,12 @@ module ApplicationHelper
 	def wants_to_quit(meal)
 		check_user()
 		if Current.user.is_eater(meal)
-			eater = Eater.find_by(meal_id: meal[:id])
-			eater.update(eating: false)
-			edit_message(:text, 
-				text: meal.generate_meal_overview,  
-				message_id: meal[:message_id],
-				parse_mode: 'MarkdownV2',
-			 	reply_markup: {
-		      inline_keyboard: [
-		        [
-		          {text: t('.eat'), callback_data: 'wants_to_eat'},
-		          {text: t('.leave'), callback_data: 'wants_to_quit'},
-		          {text: t('.pay'), callback_data: 'wants_to_pay'}
-		        ],
-		        [{text: t('.overview'), url: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ'}],
-		      ],
-		    }
-		   )
+			if Current.user.is_eating(meal)
+				Eater.find_by(meal: meal, user: Current.user).update(eating: false)
+				update_meal_summary(meal)
+			else
+				answer_callback_query t('.meal.already_quitted')
+			end
 		else 
 			answer_callback_query t('.meal.not_yet_joined')
 		end
