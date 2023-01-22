@@ -41,6 +41,7 @@ en:
       alert: This is ALERT-T-T!!!
       meal:
         already_eater: You are already participating
+        already_quitted: You already left
         joining_meal: You are joining the meal
       eat: E
       kook: K

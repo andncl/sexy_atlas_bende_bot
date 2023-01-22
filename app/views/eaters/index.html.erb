@@ -20,9 +20,9 @@
   <tbody>
     <% @eaters.each do |eater| %>
       <tr>
-        <th scope="row"><%= eater.id%></th>
+        <th><%= eater.id%></th>
         <td><%= eater.first_name %></td>
-        <td>eater.cooking</td>
+        <td><%= eater.cooking %></td>
         <td><%= eater.eating %></td>
         <td><%= eater.meal_id %></td>
         <td>
