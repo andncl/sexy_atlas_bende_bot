@@ -12,10 +12,11 @@ class Meal < ApplicationRecord
     eaters.each do |eater|
     	if eater.eating
       	text = text + eater.first_name + "\n"
+      else
+        text = text + "--" + eater.first_name + "--" + "\n"
       end
       puts eater
     end
-
     text
   end
 end
